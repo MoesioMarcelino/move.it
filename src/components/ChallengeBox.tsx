@@ -1,7 +1,17 @@
-import { useContext } from 'react';
-import { useChallenge } from '../hooks/Challenge';
-import { useCountdown } from '../hooks/Countdown';
-import style from '../styles/components/ChallengeBox.module.css';
+import { useChallenge } from "../hooks/Challenge";
+import { useCountdown } from "../hooks/Countdown";
+import {
+  Container,
+  ChallengeBoxNotActive,
+  Title,
+  Description,
+  ImgBoxNotActive,
+  ChallengeBoxActive,
+  HeaderBoxActive,
+  MainBoxActive,
+  FooterBoxActive,
+  ButtonBoxActive,
+} from "../styles/components/ChallengeBox";
 
 export default function ChallengeBox() {
   const { activeChallenge, resetChallenge, completeChallenge } = useChallenge();
@@ -18,44 +28,40 @@ export default function ChallengeBox() {
   }
 
   return (
-    <div className={style.challengeBoxContainer}>
+    <Container>
       {activeChallenge ? (
-        <div className={style.challengeBoxActive}>
-          <header>Ganhe {activeChallenge.amount} xp</header>
+        <ChallengeBoxActive>
+          <HeaderBoxActive>Ganhe {activeChallenge.amount} xp</HeaderBoxActive>
 
-          <main>
+          <MainBoxActive>
             <img src={`icons/${activeChallenge.type}.svg`} />
             <strong>Novo desafio</strong>
             <p>{activeChallenge.description}</p>
-          </main>
+          </MainBoxActive>
 
-          <footer>
-            <button
-              className={style.challengeBoxFailedButton}
+          <FooterBoxActive>
+            <ButtonBoxActive
+              fails
               type="button"
               onClick={handleChangllendFailed}
             >
               Falhei
-            </button>
+            </ButtonBoxActive>
 
-            <button
-              className={style.challengeBoxSucceededButton}
-              type="button"
-              onClick={handleChangllendSucceeded}
-            >
+            <ButtonBoxActive type="button" onClick={handleChangllendSucceeded}>
               Completei
-            </button>
-          </footer>
-        </div>
+            </ButtonBoxActive>
+          </FooterBoxActive>
+        </ChallengeBoxActive>
       ) : (
-        <div className={style.challengeBoxNotActive}>
-          <strong>Finalize um ciclo para receber um desafio</strong>
-          <p>
-            <img src="icons/level-up.svg" alt="level up" />
+        <ChallengeBoxNotActive>
+          <Title>Finalize um ciclo para receber um desafio</Title>
+          <Description>
+            <ImgBoxNotActive src="icons/level-up.svg" alt="level up" />
             Avance de level completando desafios.
-          </p>
-        </div>
+          </Description>
+        </ChallengeBoxNotActive>
       )}
-    </div>
+    </Container>
   );
 }

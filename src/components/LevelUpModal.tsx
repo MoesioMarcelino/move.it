@@ -1,20 +1,29 @@
-import { useChallenge } from '../hooks/Challenge';
-import styles from '../styles/components/LevelUpModal.module.css';
+import { useChallenge } from "../hooks/Challenge";
+
+import {
+  Overlay,
+  Container,
+  Header,
+  Label,
+  Description,
+  ButtonCloseModal,
+  ImgClose,
+} from "../styles/components/LevelUpModal";
 
 export default function LevelUpModal() {
   const { level, closeLevelUpModal } = useChallenge();
   return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
-        <header>{level}</header>
+    <Overlay>
+      <Container>
+        <Header>{level}</Header>
 
-        <strong>Parabéns</strong>
-        <p>Você alcançou um novo level</p>
+        <Label>Parabéns</Label>
+        <Description>Você alcançou um novo level</Description>
 
-        <button type="button" onClick={closeLevelUpModal}>
-          <img src="/icons/close.svg" alt="Fechar modal" />
-        </button>
-      </div>
-    </div>
+        <ButtonCloseModal type="button" onClick={closeLevelUpModal}>
+          <ImgClose src="/icons/close.svg" alt="Fechar modal" />
+        </ButtonCloseModal>
+      </Container>
+    </Overlay>
   );
 }

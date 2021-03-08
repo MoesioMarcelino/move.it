@@ -1,16 +1,16 @@
-import Head from 'next/head';
-import { GetServerSideProps } from 'next';
+import Head from "next/head";
+import { GetServerSideProps } from "next";
 
-import ChallengeBox from '../components/ChallengeBox';
-import CompletedChallenges from '../components/CompletedChallenges';
-import Countdown from '../components/Countdown';
-import ExperienceBar from '../components/ExperienceBar';
-import Profile from '../components/Profile';
+import ChallengeBox from "../components/ChallengeBox";
+import CompletedChallenges from "../components/CompletedChallenges";
+import Countdown from "../components/Countdown";
+import ExperienceBar from "../components/ExperienceBar";
+import Profile from "../components/Profile";
 
-import styles from '../styles/pages/Home.module.css';
-import { CountdownProvider } from '../hooks/Countdown';
-import { ChallengesProvider } from '../hooks/Challenge';
+import { CountdownProvider } from "../hooks/Countdown";
+import { ChallengesProvider } from "../hooks/Challenge";
 
+import { Container, Section, Components } from "../styles/pages/Home";
 interface HomeProps {
   level: number;
   currentExperience: number;
@@ -28,25 +28,25 @@ export default function Home({
       currentExperience={currentExperience}
       challengesCompleted={challengesCompleted}
     >
-      <div className={styles.container}>
+      <Container>
         <Head>
           <title>Início | move.it</title>
         </Head>
         <ExperienceBar />
 
         <CountdownProvider>
-          <section>
-            <div>
+          <Section>
+            <Components>
               <Profile />
               <CompletedChallenges />
               <Countdown />
-            </div>
-            <div>
+            </Components>
+            <Components>
               <ChallengeBox />
-            </div>
-          </section>
+            </Components>
+          </Section>
         </CountdownProvider>
-      </div>
+      </Container>
     </ChallengesProvider>
   );
 }

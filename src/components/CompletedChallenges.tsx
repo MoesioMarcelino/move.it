@@ -1,12 +1,16 @@
-import { useChallenge } from '../hooks/Challenge';
-import styles from '../styles/components/CompletedChallenges.module.css';
+import { useChallenge } from "../hooks/Challenge";
+import {
+  Container,
+  Span,
+  Total,
+} from "../styles/components/CompletedChallenges";
 
 export default function CompletedChallenges() {
   const { challengesCompleted } = useChallenge();
   return (
-    <div className={styles.completedChallengesContainer}>
-      <span>Desafios completos</span>
-      <span>{challengesCompleted}</span>
-    </div>
+    <Container>
+      <Span>Desafios completos</Span>
+      <Total>{challengesCompleted}</Total>
+    </Container>
   );
 }

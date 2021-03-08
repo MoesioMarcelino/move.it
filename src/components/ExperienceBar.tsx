@@ -1,25 +1,29 @@
-import { useChallenge } from '../hooks/Challenge';
-import styles from '../styles/components/ExpeirenceBar.module.css';
+import { useChallenge } from "../hooks/Challenge";
+import {
+  Header,
+  Metric,
+  ProgressContainer,
+  ProgressBar,
+  ProgressValue,
+} from "../styles/components/ExpeirenceBar";
 
 export default function ExperienceBar() {
   const { currentExperience, experienceToNextLevel } = useChallenge();
 
   const percentToNextLevel =
     Math.round(currentExperience * 100) / experienceToNextLevel;
-  return (
-    <header className={styles.experienceBar}>
-      <span>0 xp</span>
-      <div>
-        <div style={{ width: `${percentToNextLevel}%` }} />
 
-        <span
-          className={styles.currentExperience}
-          style={{ left: `${percentToNextLevel}%` }}
-        >
+  return (
+    <Header>
+      <Metric>0 xp</Metric>
+      <ProgressContainer>
+        <ProgressBar style={{ width: `${percentToNextLevel}%` }} />
+
+        <ProgressValue style={{ left: `${percentToNextLevel}%` }}>
           {currentExperience} xp
-        </span>
-      </div>
-      <span>{experienceToNextLevel} xp</span>
-    </header>
+        </ProgressValue>
+      </ProgressContainer>
+      <Metric>{experienceToNextLevel} xp</Metric>
+    </Header>
   );
 }

@@ -1,21 +1,26 @@
-import { useChallenge } from '../hooks/Challenge';
-import styles from '../styles/components/Profile.module.css';
+import { useChallenge } from "../hooks/Challenge";
+
+import {
+  Container,
+  UserInfoContainer,
+  Username,
+} from "../styles/components/Profile";
 
 export default function Profile() {
   const { level } = useChallenge();
   return (
-    <div className={styles.profileContainer}>
+    <Container>
       <img
         src="https://github.com/moesiomarcelino.png"
         alt="Moesio marcelino"
       />
-      <div>
-        <strong>Moesio Marcelino</strong>
+      <UserInfoContainer>
+        <Username>Moesio Marcelino</Username>
         <p>
           <img src="icons/level.svg" alt="Level" />
           Level {level}
         </p>
-      </div>
-    </div>
+      </UserInfoContainer>
+    </Container>
   );
 }
